@@ -1,54 +1,31 @@
-# React + TypeScript + Vite
+# Skip Hire Selection Interface
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive React application for selecting skip sizes for waste disposal services, built with React, TypeScript, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## 🚀 Development Approach
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application follows a clean, modular development approach with clear separation of concerns:
 
-## Expanding the ESLint configuration
+1. **Page Component (`SkipSelection`)**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+   - Serves as the container for the entire skip selection page
+   - Uses the `useSkipSelection` hook for data management
+   - Composes layout and skip components together
+   - Handles navigation and UI state
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. **Custom Hook (`useSkipSelection`)**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+   - Encapsulates all business logic and data fetching
+   - Manages skip data, loading states, and filtering
+   - Provides selection functionality independent of UI
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3. **Layout Components**
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+   - `ProgressBar`: Shows booking progress steps with horizontal scrolling. Right now its not functional or interactive
+   - Handles responsive behavior across devices
+   - Maintains consistent UI structure
+
+4. **Skip Components**
+   - `CategoryFilter`: Handles filtering of skips by size category
+   - `SkipList`: Displays skips in table (desktop) or card (mobile) format
+   - Focuses purely on presentation with props from parent
